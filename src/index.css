@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nsans Regular";
+  src: url(./assets/NetflixSans-Regular.woff2);
+}
+
+@font-face {
+  font-family: "Nsans Light";
+  src: url(./assets/NetflixSans-Light.woff2);
+}
+
+@font-face {
+  font-family: "Nsans Bold";
+  src: url(./assets/NetflixSans-Bold.woff2);
+}
+
+@font-face {
+  font-family: "Nsans Medium";
+  src: url(./assets/NetflixSans-Medium.woff2);
+}
+
+body {
+  font-family: "Nsans Regular", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.nav-logo {
+  width: 11.75em;
+  /* background-image: url('/Netflix_Logo_PMS.png'); */
+}
+
+/* @media screen and (max-width: 600px) {
+  .nav-logo {
+    width: 11.75em;
+    src: url(/Netflix_Logo_PMS.png);
+  }
+} */
+
+.language {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: #000000;
+  border: 1px solid #787878;
+  border-radius: 1.5rem;
+  padding: 5px 24px 5px 10px;
+  font-size: 14px;
+  font-family: "Nsans Regular";
+  gap: 8px;
+  margin-right: 1em;
+}
+
+.language-dropdown {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 1px;
+  outline: none;
+  width: 100%;
+}
+
+.language-dropdown:focus {
+  outline: none;
+}
+
+.language::after {
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  pointer-events: none;
+  font-size: 12px;
+  color: white;
+}
+
+.language option {
+  color: #000000;
+}

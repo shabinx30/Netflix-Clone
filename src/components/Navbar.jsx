@@ -13,14 +13,14 @@ const Navbar = () => {
         <div className="language">
           <IoLanguage></IoLanguage>
           <select className="language-dropdown">
-            <option selected value="english">
+            <option defaultValue="english" value="english">
               English
             </option>
             <option value="hindi">हिन्दी</option>
           </select>
         </div>
 
-        <Link to="/signup">
+        <Link to="/login">
           <button className="bg-white px-4 py-1 rounded-3xl cursor-pointer text-black">
             Sign In
           </button>

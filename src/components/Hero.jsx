@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import endpoints, { createImageUrl } from "../../services/movieServices";
+import endpoints, { createImageUrl } from "../services/movieServices";
 
 const Hero = () => {
   const [movie, setMovie] = useState({});

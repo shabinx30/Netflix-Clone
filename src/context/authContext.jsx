@@ -26,7 +26,7 @@ export function AuthContextProvieder({ children }) {
   function signUp(email, password) {
     createUserWithEmailAndPassword(auth, email, password);
     setDoc(doc(db, 'users', email), {
-      favShow: [],
+      favShows: [],
     })
   }
 

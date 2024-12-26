@@ -4,11 +4,17 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import {db} from "../services/firebase"
 import { UserAuth } from "../context/authContext"
+import { useNavigate } from "react-router-dom";
 
 const MovieItem = ({ movie }) => {
   const [fav, setFav] = useState(false);
 
   const {user} = UserAuth()
+
+  const navigate = useNavigate()
+
+  console.log(movie);
+  
 
 
   const { title, backdrop_path, poster_path } = movie;
@@ -28,14 +34,14 @@ const MovieItem = ({ movie }) => {
   }
 
   return (
-    <div className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2">
+    <div onClick={() => navigate(`/player/${movie.id}`)} className="relative w-[160px] sm:w-[200px] md:w-[200px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2">
       <img
-        className="w-full h-40 block object-cover object-top"
-        src={createImageUrl(backdrop_path ?? poster_path, "w500")}
+        className="w-full h-full"
+        src={createImageUrl(poster_path ?? backdrop_path, "w500")}
         alt={title}
       />
 
-      <div className="absolute top-0 left-0 w-full h-40 bg-black/75 opacity-0 hover:opacity-100">
+      <div className="absolute top-0 left-0 w-full h-full bg-black/75 opacity-0 hover:opacity-100">
         <p className="w-44 mt-3 ml-3 whitespace-normal font-nsans-medium">
           {movie.title}
         </p>

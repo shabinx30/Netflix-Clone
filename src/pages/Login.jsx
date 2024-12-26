@@ -10,6 +10,11 @@ const Login = () => {
     const {user, login} = UserAuth()
     const navigate = useNavigate()
 
+    // if(user){
+    //   navigate('/')
+    // }
+
+
     const handleFormSubmition = (e) => {
       e.preventDefault()
   

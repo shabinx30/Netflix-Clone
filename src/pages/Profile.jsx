@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const [movies, setMovies] = useState([]);
   const { user, logOut } = UserAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -87,6 +87,7 @@ const Profile = () => {
               >
                 {movies.map((movie) => (
                   <div
+                    
                     key={movie.id}
                     className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2"
                   >
@@ -99,7 +100,7 @@ const Profile = () => {
                       alt={movie.title}
                     />
 
-                    <div className="absolute top-0 left-0 w-full h-40 bg-black/75 opacity-0 hover:opacity-100">
+                    <div onClick={() => navigate(`/player/${new URLSearchParams(movie)}`)} className="absolute top-0 left-0 w-full h-40 bg-black/75 opacity-0 hover:opacity-100">
                       <p className="w-44 mt-3 ml-3 whitespace-normal font-nsans-medium">
                         {movie.title}
                       </p>

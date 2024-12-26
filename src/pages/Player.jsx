@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Player = () => {
   const [apiData, setApiData] = useState({
@@ -11,40 +12,36 @@ const Player = () => {
     type: "",
   });
   const { params } = useParams();
-
-  //   console.log(params);
+  const navigate = useNavigate();
 
   const movie = new URLSearchParams(params);
 
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      url: `https://api.themoviedb.org/3/movie/${movie.get("id")}/videos`,
-      params: { language: "en-US" },
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NGRlZjI5NTdkYjU1ZDM2NGIyMzYyM2U1NDIxYWE1MyIsIm5iZiI6MTczNTA0OTQwNC44OTUsInN1YiI6IjY3NmFjMGJjNDVjYzU1ZmZiNzY0YmU5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LRV__rLoTLg39zc80HpFKQ9UK1lSKTQ4DBFF4j_G2lg",
-      },
-    };
+  const options = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/movie/${movie.get("id")}/videos`,
+    params: { language: "en-US" },
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NGRlZjI5NTdkYjU1ZDM2NGIyMzYyM2U1NDIxYWE1MyIsIm5iZiI6MTczNTA0OTQwNC44OTUsInN1YiI6IjY3NmFjMGJjNDVjYzU1ZmZiNzY0YmU5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LRV__rLoTLg39zc80HpFKQ9UK1lSKTQ4DBFF4j_G2lg",
+    },
+  };
 
+  useEffect(() => {
     axios
       .request(options)
       .then((res) => setApiData(res.data.results[res.data.results.length - 1]))
       .catch((err) => console.error(err));
   }, []);
 
-  const truncate = (str, length) => {
-    if (!str) {
-      return "";
-    }
-
-    return str.length > length ? str.slice(0, length) + "..." : str;
-  };
-
   return (
     <>
-      <div className="h-[100vh] flex justify-center items-center pt-12">
+      <div className="h-[100vh] flex flex-col items-center pt-12 relative">
+        <IoMdArrowRoundBack
+          onClick={() => navigate("/")}
+          size={40}
+          className="z-10 absolute top-20 left-4 bg-gray-100 text-black rounded-full p-2 border-2 border-red-600 cursor-pointer"
+        />
         <iframe
           width="90%"
           height="90%"
@@ -57,10 +54,9 @@ const Player = () => {
       <div className="pl-20 pb-20">
         <h1 className="text-3xl font-nsans-bold">{movie.get("title")}</h1>
         <div className="flex">
-          <FaStar color="yellow" className="mt-1 mr-2"/>
+          <FaStar color="yellow" className="mt-1 mr-2" />
           <p>{parseFloat(movie.get("vote_average")).toFixed(1)}</p>
         </div>
-
         <p className="text-gray-400 text-sm mt-5">
           {movie.get("release_date")}
         </p>

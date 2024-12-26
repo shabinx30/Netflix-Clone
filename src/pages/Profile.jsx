@@ -5,10 +5,12 @@ import { UserAuth } from "../context/authContext";
 import { db } from "../services/firebase";
 import { createImageUrl } from "../services/movieServices";
 import { arrayRemove, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [movies, setMovies] = useState([]);
-  const { user } = UserAuth();
+  const { user, logOut } = UserAuth();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {
@@ -58,6 +60,15 @@ const Profile = () => {
             <p className="font-nsans-light text-gray-400 text-lg ">
               {user.email}
             </p>
+            <button
+              onClick={() => {
+                logOut();
+                navigate("/");
+              }}
+              className="bg-red-600 rounded-lg p-2 hover:bg-red-700 duration-300 mt-3"
+            >
+              Logout
+            </button>
           </div>
 
           {/* movie row */}

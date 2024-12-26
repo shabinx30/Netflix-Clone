@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import endpoints, { createImageUrl } from "../services/movieServices";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [movie, setMovie] = useState({});
@@ -32,6 +33,9 @@ const Hero = () => {
 
   const { title, backdrop_path, release_date, overview } = movie;
 
+  const params = new URLSearchParams(movie).toString();
+  const navigate = useNavigate();
+
   return (
     <div className="w-full h-[550px] lg:h-[850px]">
       <div className="w-full h-full">
@@ -45,10 +49,10 @@ const Hero = () => {
         <div className="absolute w-full top-[20%] lg:top-[45%] p-4 md:p-8">
           <h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
           <div className="mt-8 mb-4">
-            <button className="border bg-gray-300 text-black py-2 px-5">
+            <button onClick={() => navigate(`/player/${params}`)} className="border bg-gray-300 text-black py-2 px-5 hover:bg-red-600 hover:text-white hover:border-gray-800 duration-300">
               Play
             </button>
-            <button className="border border-gray-300 py-2 px-5 ml-4">
+            <button className="border border-gray-300 py-2 px-5 ml-4 hover:bg-gray-300 hover:text-black duration-300">
               Watch Later
             </button>
           </div>

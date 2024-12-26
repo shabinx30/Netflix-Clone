@@ -4,8 +4,7 @@ import { IoLanguage } from "react-icons/io5";
 import { UserAuth } from "../context/authContext";
 
 const Navbar = () => {
-  const { user, logOut } = UserAuth();
-  const navigate = useNavigate();
+  const { user } = UserAuth();
 
   return (
     <div className="absolute w-full p-1 pl-7 pr-10 flex items-center justify-between z-50">
@@ -25,13 +24,10 @@ const Navbar = () => {
             </select>
           </div>
 
-          <button onClick={() => {
-            logOut()
-            navigate('/')
-          }}>Logout</button>
+          
 
           <Link to="/profile">
-            <button className="bg-white px-4 py-1 rounded-3xl cursor-pointer text-black border-2 border-black ">
+            <button className="bg-white px-4 py-1 rounded-3xl cursor-pointer text-black border-2 border-black hover:bg-gray-700 hover:text-white duration-300">
               {user.email[0].toUpperCase()}
             </button>
           </Link>
@@ -49,7 +45,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/login">
-            <button className="bg-white px-4 py-1 rounded-3xl cursor-pointer text-black">
+            <button className="bg-white px-4 py-1 rounded-3xl cursor-pointer text-black hover:bg-gray-700 hover:text-white duration-300">
               Sign In
             </button>
           </Link>

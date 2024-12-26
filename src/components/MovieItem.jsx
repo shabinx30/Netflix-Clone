@@ -13,7 +13,7 @@ const MovieItem = ({ movie }) => {
 
   const navigate = useNavigate()
 
-  console.log(movie);
+  // console.log(movie);
   
 
 
@@ -33,8 +33,10 @@ const MovieItem = ({ movie }) => {
     }
   }
 
+  const params = new URLSearchParams(movie).toString()
+
   return (
-    <div onClick={() => navigate(`/player/${movie.id}`)} className="relative w-[160px] sm:w-[200px] md:w-[200px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2">
+    <div onClick={() => navigate(`/player/${params}`)} className="relative w-[160px] sm:w-[200px] md:w-[200px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2">
       <img
         className="w-full h-full"
         src={createImageUrl(poster_path ?? backdrop_path, "w500")}

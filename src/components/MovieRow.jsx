@@ -15,13 +15,13 @@ const MovieRow = ({ title, url }) => {
   }, [url]);
 
   const slide = (offset) => {
-    const slider = document.getElementById(`slider${movies[0].id}`)
-    slider.scrollLeft = slider.scrollLeft + offset
-  }
+    const slider = document.getElementById(`slider${movies[0]?.id || ""}`);
+    slider.scrollLeft = slider.scrollLeft + offset;
+  };
 
   return (
-    <>
-      <h2 className="font-nsans-bold md:text-xl p-4 ">{title}</h2>
+    <div className="pr-20 pl-20">
+      <h2 className="font-nsans-bold md:text-xl p-4">{title}</h2>
 
       <div className="relative flex items-center group">
         <MdChevronLeft
@@ -30,7 +30,7 @@ const MovieRow = ({ title, url }) => {
           className="bg-white rounded-full absolute left-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
         />
         <div
-          id={`slider${movies[0].id}`}
+          id={`slider${movies[0]?.id || ""}`}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
           {movies.map((movie) => (
@@ -43,7 +43,7 @@ const MovieRow = ({ title, url }) => {
           className="bg-white rounded-full absolute right-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
         />
       </div>
-    </>
+    </div>
   );
 };
 

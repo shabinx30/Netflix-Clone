@@ -52,7 +52,7 @@ const Hero = () => {
           <h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
           <div className="mt-8 mb-4">
             <button onClick={() => navigate(`/player/${params}`)} className="relative pl-8 border bg-gray-300 text-black py-2 px-3 hover:bg-red-600 hover:text-white hover:border-gray-800 duration-300">
-              <FaPlay size={15} className="absolute top-3 left-3"/>
+              <FaPlay size={15} className="absolute top-[13px] left-3"/>
               Play
             </button>
             <button className="relative pl-10 border border-gray-300 py-2 px-4 ml-4 hover:bg-gray-300 hover:text-black duration-300">

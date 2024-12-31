@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import endpoints, { createImageUrl } from "../services/movieServices";
 import { useNavigate } from "react-router-dom";
+import { FaPlay } from "react-icons/fa";
+import { MdOutlineWatchLater } from "react-icons/md";
 
 const Hero = () => {
   const [movie, setMovie] = useState({});
@@ -49,10 +51,12 @@ const Hero = () => {
         <div className="absolute w-full top-[20%] lg:top-[45%] p-4 md:p-8">
           <h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
           <div className="mt-8 mb-4">
-            <button onClick={() => navigate(`/player/${params}`)} className="border bg-gray-300 text-black py-2 px-5 hover:bg-red-600 hover:text-white hover:border-gray-800 duration-300">
+            <button onClick={() => navigate(`/player/${params}`)} className="relative pl-8 border bg-gray-300 text-black py-2 px-3 hover:bg-red-600 hover:text-white hover:border-gray-800 duration-300">
+              <FaPlay size={15} className="absolute top-3 left-3"/>
               Play
             </button>
-            <button className="border border-gray-300 py-2 px-5 ml-4 hover:bg-gray-300 hover:text-black duration-300">
+            <button className="relative pl-9 border border-gray-300 py-2 px-3 ml-4 hover:bg-gray-300 hover:text-black duration-300">
+              <MdOutlineWatchLater size={20} className="absolute top-2.5 left-3"/>
               Watch Later
             </button>
           </div>

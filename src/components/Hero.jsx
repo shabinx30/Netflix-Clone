@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import endpoints, { createImageUrl } from "../services/movieServices";
 import { useNavigate } from "react-router-dom";
-import { FaPlay } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa6";
 import { MdOutlineWatchLater } from "react-icons/md";
 
 const Hero = () => {
@@ -55,7 +55,7 @@ const Hero = () => {
               <FaPlay size={15} className="absolute top-3 left-3"/>
               Play
             </button>
-            <button className="relative pl-9 border border-gray-300 py-2 px-3 ml-4 hover:bg-gray-300 hover:text-black duration-300">
+            <button className="relative pl-10 border border-gray-300 py-2 px-4 ml-4 hover:bg-gray-300 hover:text-black duration-300">
               <MdOutlineWatchLater size={20} className="absolute top-2.5 left-3"/>
               Watch Later
             </button>

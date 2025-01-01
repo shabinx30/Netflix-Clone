@@ -73,12 +73,12 @@ const Profile = () => {
 
           {/* movie row */}
 
-          <div className="pr-20 pl-20">
+          <div className="relative pr-20 pl-20">
             <h2 className="font-nsans-bold md:text-xl p-4">Favorite Shows</h2>
             <MdChevronLeft
               onClick={() => slide(-500)}
               size={27.5}
-              className="bg-white/30 rounded-2xl h-20 absolute mt-12 left-10 opacity-80 text-white z-10 cursor-pointer"
+              className="bg-white/30 rounded-2xl h-20 top-32 absolute mt-12 left-10 opacity-80 text-white z-10 cursor-pointer"
             />
             <div className="relative flex items-center group">
               <div
@@ -86,28 +86,29 @@ const Profile = () => {
                 className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
               >
                 {movies.map((movie) => (
-                  <div
-                    
-                    key={movie.id}
-                    className="relative w-[160px] sm:w-[200px] md:w-[240px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2"
-                  >
+                  <div key={movie.id} className="relative w-[160px] sm:w-[200px] md:w-[200px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2 ">
                     <img
-                      className="w-full h-40 block object-cover object-top"
-                      src={createImageUrl(
-                        movie.backdrop_path ?? movie.poster_path,
-                        "w500"
-                      )}
+                      className="w-full h-full "
+                      src={createImageUrl(movie.poster_path ?? movie.backdrop_path, "w500")}
                       alt={movie.title}
                     />
 
-                    <div onClick={() => navigate(`/player/${new URLSearchParams(movie)}`)} className="absolute top-0 left-0 w-full h-40 bg-black/75 opacity-0 hover:opacity-100">
+                    <div
+                      onClick={() =>
+                        navigate(`/player/${new URLSearchParams(movie)}`)
+                      }
+                      className="absolute top-0 left-0 w-full h-full bg-black/75 opacity-0 hover:opacity-100 duration-200"
+                    >
                       <p className="w-44 mt-3 ml-3 whitespace-normal font-nsans-medium">
                         {movie.title}
                       </p>
 
                       <p>
                         <AiOutlineClose
-                          onClick={() => handleUnlikeShow(movie)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleUnlikeShow(movie);
+                          }}
                           size={20}
                           className="absolute top-3 right-3"
                         />
@@ -121,7 +122,7 @@ const Profile = () => {
             <MdChevronRight
               onClick={() => slide(500)}
               size={27.5}
-              className="bg-white/30 rounded-2xl h-20 absolute bottom-0 right-10 opacity-80 text-white z-10 cursor-pointer"
+              className="bg-white/30 rounded-2xl h-20 absolute top-44 bottom-0 right-10 opacity-80 text-white z-10 cursor-pointer"
             />
           </div>
         </div>

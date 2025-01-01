@@ -20,10 +20,10 @@ const MovieRow = ({ title, url }) => {
   };
 
   return (
-    <div className="pr-20 pl-20">
-      <h2 className="font-nsans-bold md:text-xl p-4">{title}</h2>
+    <div className="pr-20 pl-20 ">
+      <h2 className="font-nsans-bold md:text-xl p-4 ">{title}</h2>
 
-      <div className="relative flex items-center group">
+      <div className="relative flex items-center group ">
         <MdChevronLeft
           onClick={() => slide(-500)}
           size={40}

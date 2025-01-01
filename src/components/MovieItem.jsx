@@ -36,19 +36,22 @@ const MovieItem = ({ movie }) => {
   const params = new URLSearchParams(movie).toString()
 
   return (
-    <div className="relative w-[160px] sm:w-[200px] md:w-[200px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2">
+    <div className="relative w-[160px] sm:w-[200px] md:w-[200px] lg:[280px] inline-block rounded-lg overflow-hidden cursor-pointer m-2 ">
       <img
-        className="w-full h-full"
+        className="w-full h-full "
         src={createImageUrl(poster_path ?? backdrop_path, "w500")}
         alt={title}
       />
 
       <div onClick={() => navigate(`/player/${params}`)} className="absolute top-0 left-0 w-full h-full bg-black/75 opacity-0 hover:opacity-100 duration-200">
-        <p className="w-44 mt-3 ml-3 whitespace-normal font-nsans-medium">
+        <p className="w-40 mt-3 ml-3 whitespace-normal font-nsans-medium">
           {movie.title}
         </p>
 
-        <p onClick={markFavShow} className="cursor-pointer">
+        <p onClick={(e) => {
+          e.stopPropagation()
+          markFavShow()
+        }} className="cursor-pointer">
           {fav ? (
             <FaHeart
               size={20}
